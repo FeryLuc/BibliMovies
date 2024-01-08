@@ -54,10 +54,10 @@ header{
     margin: 0 auto;
     margin-top: 24px;
     width: 80%;
-    color: white;
+    color: rgb(255, 94, 0);
     display: flex;
     flex-wrap: wrap;
-    gap: 32px;
+    gap: 3.5rem;
     justify-content: center;
     align-items: center;
 
@@ -77,27 +77,18 @@ header{
             object-fit: cover;
         }
 
-        #movie-title{
-            margin: 0 auto;
-            padding: 8px;
-            text-align: center;
-            z-index: 1;
-            border: 1px solid rgba(255, 255, 255, 0.267);
-            width: 90%;
-        }
-
         #movie-rate{
             position: absolute;
-            bottom: 0;
-            right: 0;
+            bottom: -25px;
+            right: -25px;
             z-index: 1;
             width: 50px;
             height: 50px;
-            margin: 8px;
+            font-weight: 900;
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.26);
+            border: 1px solid rgb(255, 102, 0);
             border-radius: 50%;
         }
     }
