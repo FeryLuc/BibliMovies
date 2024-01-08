@@ -13,10 +13,11 @@ body{
 
 header{
     width: 100%;
+    height: 130px;
     padding: 32px;
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: last baseline;
     border-bottom: 1px solid rgba(255, 255, 255, 0.164);
 
     div{
@@ -32,7 +33,7 @@ header{
 
         h1{
             font-family: 'Cinzel', serif;
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 600;
             color: rgb(250, 132, 64);
             cursor: default;
@@ -41,6 +42,7 @@ header{
     .fa-fire:hover::before{
         content: '\f015';
         cursor: pointer;
+        font-size: 2.725rem;
     }
 
     #burgerMenu{
@@ -60,12 +62,16 @@ header{
     gap: 3.5rem;
     justify-content: center;
     align-items: center;
+    
 
     #movie-card{
         position: relative;
         width: 200px;
         height: 300px;
+        border-radius: 15px;
+        box-shadow: rgba(255, 94, 0, 0.281) 0px 3px 8px;
         cursor: pointer;
+        transition: ease-out 0.3s;
 
         #movie-img{
             position: absolute;
@@ -74,6 +80,7 @@ header{
             z-index: -1;
             width: 100%;
             height: 100%;
+            border-radius: 15px;
             object-fit: cover;
         }
 
@@ -91,5 +98,12 @@ header{
             border: 1px solid rgb(255, 102, 0);
             border-radius: 50%;
         }
+    }
+
+    #movie-card:hover{
+        box-shadow: rgba(255, 94, 0, 0.815) 0px 3px 8px;
+        perspective: 10000px;
+        transform: scale(1.1);
+        transition: ease-in 0.3s;
     }
 }

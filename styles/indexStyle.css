@@ -13,10 +13,11 @@ body{
 
 header{
     width: 100%;
+    height: 130px;
     padding: 32px;
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items:last baseline;
     border-bottom: 1px solid rgba(255, 255, 255, 0.164);
 
     div{
@@ -26,13 +27,13 @@ header{
         gap: 24px;
 
         #logo{
-            font-size: 3.5rem;
+            font-size: 2.725rem;
             color: rgb(250, 132, 64);
         }
 
         h1{
             font-family: 'Cinzel', serif;
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 600;
             color: rgb(250, 132, 64);
             cursor: default;
@@ -41,6 +42,7 @@ header{
     .fa-house:hover::before{
         content: '\f06d';
         cursor: pointer;
+        font-size: 3.5rem;
     }
 
     #burgerMenu{
