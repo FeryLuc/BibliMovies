@@ -4,6 +4,9 @@ const configUrl = "https://api.themoviedb.org/3/configuration";
 const container = document.querySelector("#containerFlex");
 const logo = document.getElementById('logo');
 const burgerMenu = document.getElementById('burgerMenu');
+const moreMovieBtn = document.getElementById('moreResult');
+
+let page = 1;
 
 function createMovieCard(movie, idx, imgUrl){
     const movieCard = document.createElement('div');
@@ -46,9 +49,9 @@ async function fetchImageBaseUrl(){
   }
 }
 
-async function fetchPopularMovie(){
+async function fetchPopularMovie(page = 1){
     try {
-      let response = await fetch(url, options);
+      let response = await fetch(`${url}?page=${page}`, options);
       if (!response.ok) {
         throw new Error("Network response not ok !");
       }
@@ -81,4 +84,18 @@ fetchPopularMovie()
   });
   burgerMenu.addEventListener('click', function() {
     alert('feature on progress');
+  });
+  moreMovieBtn.addEventListener('click', function() {
+    page++;
+    fetchPopularMovie(page).then(
+      async result => {
+        let baseUrl = await fetchImageBaseUrl();
+        console.log(baseUrl);
+        
+        for (let index = 0; index < result.length; index++) {
+          createMovieCard(result, index, baseUrl);
+      }})
+      .catch(error => {
+        console.error(error);
+      })
   });

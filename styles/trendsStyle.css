@@ -107,3 +107,24 @@ header{
         transition: ease-in 0.3s;
     }
 }
+
+#moreResult{
+    padding: 16px;
+    display: block;
+    margin: 54px auto;
+    width: 60%;
+    font-size: 1.5rem;
+    text-align: center;
+    color: white;
+    background-color: rgb(255, 122, 44);
+    border-radius: 15px;
+    font-weight: 700;
+    border-style: none;
+    box-shadow: rgba(128, 36, 0, 0.2) 0px 2px 8px 0px;
+}
+
+#moreResult:hover{
+    color: rgb(11, 0, 22);
+    box-shadow: rgba(255, 94, 0, 0.692) 0px 2px 8px 0px;
+    cursor: pointer;
+}
