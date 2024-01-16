@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/indexStyle.css">
-    <script src="./scripts/indexScript.js" defer></script>
+
+    <script type="module" src="./scripts/indexScript.js"></script>
+    
     <title>BibliMovies</title>
 </head>
 <body>
@@ -15,5 +17,55 @@
         </div>
         <i id="burgerMenu" class="fa-solid fa-bars"></i>
     </header>
+    <main>
+        <section id="main-content">
+            <section>
+                <h2>Top Rated</h2>
+                <div>
+                    <button class="prevBtn"><</button>
+                    <div id="top-rated-movies"></div>
+                    <button class="nextBtn">></button>
+                </div>
+                <button class="view-more">View more movies</button>
+            </section>
+            <section>
+                <h2>Upcoming</h2>
+                <div>
+                    <button class="prevBtn"><</button>
+                    <div id="upcoming-movies"></div>
+                    <button class="nextBtn">></button>
+                </div>
+                <button class="view-more">View more movies</button>
+            </section>
+            <section>
+                <h2>Now playing</h2>
+                <div>
+                    <button class="prevBtn"><</button>
+                    <div id="recent-movies"></div>
+                    <button class="nextBtn">></button>
+                </div>
+                <button class="view-more">View more movies</button>
+            </section>
+            
+            <!--Faire des sliders pour:
+            - Les films top rated
+            - Les films récents
+            - Les films à venir
+            - Les séries top rated
+            - Les séries récentes
+            -->
+        </section>
+        <section id="secondary-content">
+            <!--Faire des bloc:
+                - Sugestions
+                - Stats hallucinantes
+                - Top acteurs?
+
+            -->
+        </section>
+        <footer>
+
+        </footer>
+    </main>
 </body>
 </html>

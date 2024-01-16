@@ -66,36 +66,36 @@ async function fetchPopularMovie(page = 1){
     }
 }
 
-fetchPopularMovie()
-.then(
-  async result => {
-    let baseUrl = await fetchImageBaseUrl();
-    console.log(baseUrl);
-    
-    for (let index = 0; index < result.length; index++) {
-      createMovieCard(result, index, baseUrl);
-  }})
-  .catch(error => {
+fetchPopularMovie().then(
+    async result => {
+      let baseUrl = await fetchImageBaseUrl();
+      console.log(baseUrl);
+      
+      for (let index = 0; index < result.length; index++) {
+        createMovieCard(result, index, baseUrl);
+    }}
+  ).catch(error => {
     console.error(error);
   })
 
-  logo.addEventListener('click', function() {
-    window.location.href = '../index.html';
-  });
-  burgerMenu.addEventListener('click', function() {
-    alert('feature on progress');
-  });
-  moreMovieBtn.addEventListener('click', function() {
-    page++;
-    fetchPopularMovie(page).then(
-      async result => {
-        let baseUrl = await fetchImageBaseUrl();
-        console.log(baseUrl);
-        
-        for (let index = 0; index < result.length; index++) {
-          createMovieCard(result, index, baseUrl);
-      }})
-      .catch(error => {
-        console.error(error);
-      })
-  });
+  
+logo.addEventListener('click', function() {
+  window.location.href = '../index.html';
+});
+burgerMenu.addEventListener('click', function() {
+  alert('feature on progress');
+});
+moreMovieBtn.addEventListener('click', function() {
+  page++;
+  fetchPopularMovie(page).then(
+    async result => {
+      let baseUrl = await fetchImageBaseUrl();
+      console.log(baseUrl);
+      
+      for (let index = 0; index < result.length; index++) {
+        createMovieCard(result, index, baseUrl);
+    }})
+    .catch(error => {
+      console.error(error);
+    })
+});
