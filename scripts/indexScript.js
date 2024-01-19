@@ -1,14 +1,4 @@
-import { config, options } from '../config.js';
-//header
-const logo = document.getElementById('logo');
-const burgerMenu = document.getElementById('burgerMenu');
-
-logo.addEventListener('click', function() {
-    window.location.href = '../pages/trends.html';
-  });
-  burgerMenu.addEventListener('click', function() {
-    alert('feature on progress');
-  });
+import { config, options, addLanguageToUrl, formattingDate } from '../config.js';
 
   //Main content
   const topRatedContainer = document.getElementById('top-rated-movies');
@@ -19,8 +9,11 @@ logo.addEventListener('click', function() {
     const movieCard = document.createElement('div');
     
     movieCard.innerHTML = `
-      <div class="movie-card">
-        <img id="picture" src="${config.imgBaseUrl+movie[idx].poster_path}">
+      <div class="movie-card-container">
+        <div class="movie-card">
+          <img id="picture" src="${config.imgBaseUrl+movie[idx].poster_path}">
+        </div>
+      <p>${movie[idx].title}</p>
       </div>
     `;
 
@@ -28,7 +21,7 @@ logo.addEventListener('click', function() {
   }
 
   async function fetchTopRatedMovie() {
-    let response = await fetch(`${config.topRatedUrl}`, options);
+    let response = await fetch(addLanguageToUrl(config.topRatedUrl), options);
     if (!response.ok) {
       throw new Error("Network response not ok !");
     }
@@ -40,7 +33,7 @@ logo.addEventListener('click', function() {
   }
   fetchTopRatedMovie().then(
     result => {
-      for (let index = 0; index < 10; index++) {
+      for (let index = 0; index < result.length; index++) {
         createMovieCard(result, index, topRatedContainer);
         
       }
@@ -48,26 +41,33 @@ logo.addEventListener('click', function() {
   )
 
   async function fetchUpcomingMovie() {
-    let response = await fetch(`${config.upcomingUrl}`, options);
+    let response = await fetch(addLanguageToUrl(config.upcomingUrl), options);
     if (!response.ok) {
       throw new Error("Network response not ok !");
     }
     let data = await response.json();
+    let maxDate = data.dates.maximum;
+    let minDate = data.dates.minimum;
+    
+  let [dateMin, dateMax] = formattingDate(minDate, maxDate);
+
     console.log(data);
     let result = data.results;
     console.log(result);
-    return result
+    return [result, dateMin, dateMax];
   }
   fetchUpcomingMovie().then(
-    result => {
-      for (let index = 0; index < 10; index++) {
+    ([result, dateMin, dateMax]) => {
+      let upcomingTitle = document.querySelector('.upcomingTitle');
+      upcomingTitle.textContent = `À venir - ${dateMin} au ${dateMax}`;
+      for (let index = 0; index < result.length; index++) {
         createMovieCard(result, index, upcomingContainer);        
       }
     }
   )
 
   async function fetchRecentMovie() {
-    let response = await fetch(`${config.recentUrl}`, options);
+    let response = await fetch(addLanguageToUrl(config.recentUrl), options);
     if (!response.ok) {
       throw new Error("Network response not ok !");
     }
@@ -79,7 +79,7 @@ logo.addEventListener('click', function() {
   }
   fetchRecentMovie().then(
     result => {
-      for (let index = 0; index < 10; index++) {
+      for (let index = 0; index < result.length; index++) {
         createMovieCard(result, index, recentContainer);        
       }
     }
@@ -90,25 +90,25 @@ const nextButtons = document.getElementsByClassName('nextBtn');
 
 
 prevButtons[0].addEventListener('click', function() {
-  topRatedContainer.scrollLeft -= 300;
+  topRatedContainer.scrollLeft -= 1400;
 });
 console.log(prevButtons[1]);
 nextButtons[0].addEventListener('click', function() {
-  topRatedContainer.scrollLeft += 300;
+  topRatedContainer.scrollLeft += 1400;
 });
 
 prevButtons[1].addEventListener('click', function() {
-  upcomingContainer.scrollLeft -= 300;
+  upcomingContainer.scrollLeft -= 1400;
 });
 console.log(prevButtons[1]);
 nextButtons[1].addEventListener('click', function() {
-  upcomingContainer.scrollLeft += 300;
+  upcomingContainer.scrollLeft += 1400;
 });
 
 prevButtons[2].addEventListener('click', function() {
-  recentContainer.scrollLeft -= 300;
+  recentContainer.scrollLeft -= 1400;
 });
 console.log(prevButtons[1]);
 nextButtons[2].addEventListener('click', function() {
-  recentContainer.scrollLeft += 300;
+  recentContainer.scrollLeft += 1400;
 });

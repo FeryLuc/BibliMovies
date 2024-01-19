@@ -1,14 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css';
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    cursor: default;
 }
 
 body{
-    background-color: rgb(11, 0, 22);
-    font-family: 'Roboto', sans-serif;
+    background-color: rgb(30,33,36);
+    font-family: 'Poppins', sans-serif;
 }
 
 header{
@@ -20,84 +21,118 @@ header{
     align-items:last baseline;
     border-bottom: 1px solid rgba(255, 255, 255, 0.164);
 
-    div{
-        display: flex;
-        width: 100%;
-        align-items: baseline;
-        gap: 24px;
-
-        #logo{
-            font-size: 2.725rem;
-            color: rgb(250, 132, 64);
-        }
-
-        h1{
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: rgb(250, 132, 64);
-            cursor: default;
-        }
-    }
-    .fa-house:hover::before{
-        content: '\f06d';
-        cursor: pointer;
-        font-size: 3.5rem;
-    }
-
-    #burgerMenu{
+    h1{
+        font-family: 'Cinzel', serif;
         font-size: 2.5rem;
-        color: rgb(250, 132, 64);
-        cursor: pointer;
+        font-weight: 500;
+        color: white;
+        cursor: default;
+
+        span:first-of-type {
+            color: #9e00b2;
+            font-size: 3rem;
+            font-weight: 900;
+            border-bottom: 3px solid #9e00b2;
+            text-transform: uppercase;
+        }
+        
+        span:last-of-type{
+            border-top: 2px solid white;
+            text-transform: uppercase;
+        }
     }
+    
 }
 main {
     width: 100%;
     display: flex;
-    color: rgb(250, 132, 64);;
+    color: white;
 
     #main-content {
-        width: 60%;
-        margin: 0 auto;
+        width: 100%;
         padding: 2rem 0;
         display: flex;
         flex-direction: column;
         gap: 2rem;
-        border: 1px solid red;
+
+        .big-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 2rem;
+        }
 
         section{
             display: flex;
             flex-direction: column;
-            width: 80%;
-            margin: 0 auto;
+            width: 100%;
 
-            h2{
-                margin-bottom: 8px;
-                align-self: center;
+            .title {
+                margin: 24px 0 8px 65px; 
+                display: flex;
+                gap: 16px;
+                
+                i {
+                    color: #9e00b2;
+                    font-size: 2rem;
+                    align-self: baseline;
+                }
             }
-            div {
+           
+            .title-underline {
+                height: 8px;
+                width: 20%;
+                background-color: #9e00b2;
+                margin: 0 0 24px 65px;
+                border-radius: 5px;
+            
+            }
+            .slider {
                 width: 100%;
                 margin: 0 auto;
                 display: flex;
                 border-radius: 15px;
-                background-color: rgb(14, 0, 29);
+                background-color: rgb(30,33,36);
 
                 button{
                     width: 5%;
-                    background-color: rgb(14, 0, 29);
+                    background-color: rgb(30,33,36);
                     border-style: none;
-                    color: rgb(250, 132, 64);
-                   
+                    font-size: 5rem;
+                    color: #9e00b2;
                 }
                 .prevBtn {
                     border-radius: 15px 0 0 15px;
+                    transition: ease-in-out 0.5s;
                 }
                 .nextBtn {
                     border-radius: 0 15px 15px 0;
+                    transition: ease-in-out 0.5s;
                 }
                 button:hover{
-                    background-color: rgb(2, 0, 3);;
+                    background-color: rgb(40,43,48);
+                    transition: ease-in-out 0.5s;
+                    cursor: pointer;
                 }
+            }
+            .view-more{
+                font-family: 'Poppins', sans-serif;
+                color: white;
+                background-color: #9e00b2;
+                border-style: none;
+                width: 30%;
+                margin: 0 auto;
+                font-size: 1rem;
+                font-weight: 900;
+                padding: 8px;
+                border-radius: 15px;
+                transition: ease-in-out 0.5s;
+            }
+            .view-more:hover {
+                background-color: #9d00b2af;
+                border-radius: 25px;
+                width: 25%;
+                cursor: pointer;
             }
         }
 
@@ -109,24 +144,45 @@ main {
             overflow: hidden;
             scroll-behavior: smooth;
 
-            .movie-card {
+            .movie-card-container {
                 width: 200px;
-                border-radius: 15px;
-                box-shadow: rgba(255, 94, 0, 0.281) 0px 3px 8px;
-                flex-shrink: 0;
-                
-                #picture{
-                    width: 100%;
+                display: flex;
+                flex-direction: column;
+
+                .movie-card {
+                    width: 200px;
+                    font-size: 0;
                     border-radius: 15px;
-                    object-fit: cover;
+                    box-shadow: rgba(158,0,178,
+                    0.281) 0px 3px 8px;
+                    flex-shrink: 0;
+                    overflow: hidden;
+                
+                    #picture{
+                        width: 100%;
+                        border-radius: 15px;
+                        object-fit: cover;
+                        transition: transform .4s;
+                    }
+
+                    #picture:hover {
+                        transform: scale(1.2);
+                        transform-origin: 50% 50%;
+                        cursor: pointer;
+                        
+                    }
+                }
+                .movie-card:hover {
+                    box-shadow: rgba(157, 0, 178, 0.548) 0px 5px 10px;
+                }
+                p {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    margin-top: 10px;
+                    font-weight: 400;
                 }
             }
         }
-    }
-    #secondary-content {
-        width: 30%;
-        display: flex;
-        flex-direction: column;
-        border: 1px solid green;
     }
 }
