@@ -23,7 +23,7 @@ import { config, options, addLanguageToUrl, formattingDate } from '../config.js'
     return movieCard;
     // container.appendChild(movieCard);
   }
-  function createSerieCard(serie, idx, container) {
+  function createSerieCard(serie, idx) {
     const serieCard = document.createElement('div');
     if (!serie[idx].poster_path) {
       serieCard.innerHTML = `
@@ -65,7 +65,7 @@ import { config, options, addLanguageToUrl, formattingDate } from '../config.js'
       for (let index = 0; index < result.length; index++) {
         const movieCard = createMovieCard(result, index, topRatedContainer);
         movieCard.addEventListener('click', function() {
-          console.log('bite');
+          console.log('works');
         });
         topRatedContainer.appendChild(movieCard);
       }
@@ -88,7 +88,7 @@ import { config, options, addLanguageToUrl, formattingDate } from '../config.js'
       for (let index = 0; index < result.length; index++) {
         const movieCard = createMovieCard(result, index, popularMovieContainer);
         movieCard.addEventListener('click', function() {
-          console.log('bite');
+          console.log('works');
         });
         popularMovieContainer.appendChild(movieCard);
         
@@ -119,7 +119,7 @@ import { config, options, addLanguageToUrl, formattingDate } from '../config.js'
       for (let index = 0; index < result.length; index++) {
         const movieCard = createMovieCard(result, index, upcomingContainer);
         movieCard.addEventListener('click', function() {
-          console.log('bite');
+          console.log('works');
         });
         upcomingContainer.appendChild(movieCard);     
       }
@@ -142,7 +142,7 @@ import { config, options, addLanguageToUrl, formattingDate } from '../config.js'
       for (let index = 0; index < result.length; index++) {
         const movieCard = createMovieCard(result, index, recentContainer);
         movieCard.addEventListener('click', function() {
-          console.log('bite');
+          console.log('works');
         });
         recentContainer.appendChild(movieCard);        
       }
@@ -165,7 +165,7 @@ fetchTopRatedSeries().then(
     for (let index = 0; index < result.length; index++) {
       const serieCard = createSerieCard(result, index, topRatedSeriesContainer);
       serieCard.addEventListener('click', function() {
-        console.log('bite');
+        console.log('works');
       });
       topRatedSeriesContainer.appendChild(serieCard);
     }
@@ -188,7 +188,7 @@ fetchUpcomingSeries().then(
     for (let index = 0; index < result.length; index++) {
       const serieCard = createSerieCard(result, index, upcomingSeriesContainer);
       serieCard.addEventListener('click', function() {
-        console.log('bite');
+        console.log('works');
       });
       upcomingSeriesContainer.appendChild(serieCard);
     }
@@ -211,7 +211,7 @@ fetchPopularSeries().then(
     for (let index = 0; index < result.length; index++) {
       const serieCard = createSerieCard(result, index, popularSeriesContainer);
       serieCard.addEventListener('click', function() {
-        console.log('bite');
+        console.log('works');
       });
       popularSeriesContainer.appendChild(serieCard);
     }
@@ -273,6 +273,24 @@ nextButtons[6].addEventListener('click', function() {
 
 const viewMoreBtn = document.getElementsByClassName('view-more');
 
+viewMoreBtn[0].addEventListener('click', function() {
+  window.location.href = '../pages/topRatedMovies.html';
+});
 viewMoreBtn[1].addEventListener('click', function() {
   window.location.href = '../pages/popularMovies.html';
+});
+viewMoreBtn[2].addEventListener('click', function() {
+  window.location.href = '../pages/cinemaMovies.html';
+});
+viewMoreBtn[3].addEventListener('click', function() {
+  window.location.href = '../pages/upcomingMovies.html';
+});
+viewMoreBtn[4].addEventListener('click', function() {
+  window.location.href = '../pages/topRatedSeries.html';
+});
+viewMoreBtn[5].addEventListener('click', function() {
+  window.location.href = '../pages/popularSeries.html';
+});
+viewMoreBtn[6].addEventListener('click', function() {
+  window.location.href = '../pages/upcomingSeries.html';
 });

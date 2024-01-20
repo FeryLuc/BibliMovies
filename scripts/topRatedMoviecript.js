@@ -22,9 +22,9 @@ function createMovieCard(movie, idx){
     container.appendChild(movieCard);
 }
 
-async function fetchPopularMovie(page = 1){
+async function fetchTopRatedMovie(page = 1){
   try {
-    let response = await fetch(addLanguageToUrl(config.popularMovieUrl)+`&page=${page}`, options);
+    let response = await fetch(addLanguageToUrl(config.topRatedMovieUrl)+`&page=${page}`, options);
     if (!response.ok) {
       throw new Error("Network response not ok !");
     }
@@ -37,7 +37,7 @@ async function fetchPopularMovie(page = 1){
     }
 }
 
-fetchPopularMovie().then(
+fetchTopRatedMovie().then(
   result => {
     for (let index = 0; index < result.length; index++) {
       createMovieCard(result, index);
@@ -48,7 +48,7 @@ fetchPopularMovie().then(
 
 moreMovieBtn.addEventListener('click', function() {
   page++;
-  fetchPopularMovie(page).then(
+  fetchTopRatedMovie(page).then(
     result => {
       for (let index = 0; index < result.length; index++) {
         createMovieCard(result, index);

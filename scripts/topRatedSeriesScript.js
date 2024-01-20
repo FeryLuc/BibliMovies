@@ -4,27 +4,27 @@ const moreMovieBtn = document.getElementById('moreResult');
 
 let page = 1;
 
-function createMovieCard(movie, idx){
-  const movieCard = document.createElement('div');
-  const movieRateRounded = Math.round((movie[idx].vote_average) * 10) / 10;
-  movieCard.innerHTML = `
+function createSerieCard(serie, idx){
+  const serieCard = document.createElement('div');
+  const movieRateRounded = Math.round((serie[idx].vote_average) * 10) / 10;
+  serieCard.innerHTML = `
   <div class="movie-card-container">
     <div id="movie-card">
-      <img id="movie-img" src="${config.imgBaseUrl+movie[idx].poster_path}" alt="">
+      <img id="movie-img" src="${config.imgBaseUrl+serie[idx].poster_path}" alt="">
       <div id="movie-rate">${movieRateRounded}</div>
     </div>
-    <p>${movie[idx].title}</p>
+    <p>${serie[idx].name}</p>
     </div>
   `;
-    movieCard.addEventListener('click', function () {
+    serieCard.addEventListener('click', function () {
         window.location.href = '../pages/movieDetails.html';
     } );
-    container.appendChild(movieCard);
+    container.appendChild(serieCard);
 }
 
-async function fetchPopularMovie(page = 1){
+async function fetchTopRatedSerie(page = 1){
   try {
-    let response = await fetch(addLanguageToUrl(config.popularMovieUrl)+`&page=${page}`, options);
+    let response = await fetch(addLanguageToUrl(config.topRatedSerieUrl)+`&page=${page}`, options);
     if (!response.ok) {
       throw new Error("Network response not ok !");
     }
@@ -37,10 +37,10 @@ async function fetchPopularMovie(page = 1){
     }
 }
 
-fetchPopularMovie().then(
+fetchTopRatedSerie().then(
   result => {
     for (let index = 0; index < result.length; index++) {
-      createMovieCard(result, index);
+        createSerieCard(result, index);
   }}
   ).catch(error => {
     console.error(error);
@@ -48,10 +48,10 @@ fetchPopularMovie().then(
 
 moreMovieBtn.addEventListener('click', function() {
   page++;
-  fetchPopularMovie(page).then(
+  fetchTopRatedSerie(page).then(
     result => {
       for (let index = 0; index < result.length; index++) {
-        createMovieCard(result, index);
+        createSerieCard(result, index);
     }})
     .catch(error => {
       console.error(error);

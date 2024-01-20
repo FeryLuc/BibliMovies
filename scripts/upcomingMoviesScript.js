@@ -1,6 +1,7 @@
-import { config, options, addLanguageToUrl } from '../config.js';
+import { config, options, addLanguageToUrl, formattingDate } from '../config.js';
 const container = document.querySelector("#containerFlex");
 const moreMovieBtn = document.getElementById('moreResult');
+const titlePage = document.getElementsByTagName('h1');
 
 let page = 1;
 
@@ -22,23 +23,28 @@ function createMovieCard(movie, idx){
     container.appendChild(movieCard);
 }
 
-async function fetchPopularMovie(page = 1){
+async function fetchUpcomingMovie(page = 1){
   try {
-    let response = await fetch(addLanguageToUrl(config.popularMovieUrl)+`&page=${page}`, options);
+    let response = await fetch(addLanguageToUrl(config.upcomingMovieUrl)+`&page=${page}`, options);
     if (!response.ok) {
       throw new Error("Network response not ok !");
     }
     let data = await response.json();
     let result = data.results;
+    let maxDate = data.dates.maximum;
+    let minDate = data.dates.minimum;
 
-    return result;
+    let [dateMin, dateMax] = formattingDate(minDate, maxDate);
+
+    return [result, dateMin, dateMax];
     } catch (error) {
       return Promise.reject(error);
     }
 }
 
-fetchPopularMovie().then(
-  result => {
+fetchUpcomingMovie().then(
+    ([result, dateMin, dateMax]) => {
+        titlePage[0].textContent = `Prochainement - ${dateMin} au ${dateMax}`;
     for (let index = 0; index < result.length; index++) {
       createMovieCard(result, index);
   }}
@@ -48,8 +54,8 @@ fetchPopularMovie().then(
 
 moreMovieBtn.addEventListener('click', function() {
   page++;
-  fetchPopularMovie(page).then(
-    result => {
+  fetchUpcomingMovie(page).then(
+    ([result, dateMin, dateMax]) => {
       for (let index = 0; index < result.length; index++) {
         createMovieCard(result, index);
     }})
