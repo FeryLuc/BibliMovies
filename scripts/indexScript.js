@@ -274,7 +274,7 @@ nextButtons[6].addEventListener('click', function() {
 const viewMoreBtn = document.getElementsByClassName('view-more');
 
 viewMoreBtn[0].addEventListener('click', function() {
-  window.location.href = '../pages/topRatedMovies.html';
+  window.location.href = '/pages/topRatedMovies.html';
 });
 viewMoreBtn[1].addEventListener('click', function() {
   window.location.href = '../pages/popularMovies.html';
