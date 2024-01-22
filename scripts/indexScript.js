@@ -9,6 +9,8 @@ import { config, options, addLanguageToUrl, formattingDate } from '../config.js'
   const upcomingSeriesContainer = document.getElementById('upcoming-series');
   const popularSeriesContainer = document.getElementById('popular-series');
 
+  const loader = document.getElementsByClassName('loader');
+
   function createMovieCard(movie, idx) {
     const movieCard = document.createElement('div');
     
@@ -50,6 +52,10 @@ import { config, options, addLanguageToUrl, formattingDate } from '../config.js'
   }
 
   async function fetchTopRatedMovie() {
+    topRatedContainer.style.justifyContent = 'center';
+    topRatedContainer.style.alignItems = 'center';
+    loader[0].style.display = 'block';
+      
     let response = await fetch(addLanguageToUrl(config.topRatedMovieUrl), options);
     if (!response.ok) {
       throw new Error("Network response not ok !");
@@ -68,6 +74,9 @@ import { config, options, addLanguageToUrl, formattingDate } from '../config.js'
           console.log('works');
         });
         topRatedContainer.appendChild(movieCard);
+        topRatedContainer.style.justifyContent = 'flex-start';
+        topRatedContainer.style.alignItems = 'stretch';
+        loader[0].style.display = 'none';
       }
     }
   )

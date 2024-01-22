@@ -11,6 +11,15 @@ const config = {
 
 
 }
+const titlePages = {
+  cinemaMovie: "Films au cinéma - Cinépédia",
+  topRatedMovie: "Films les mieux notés - Cinépédia",
+  upcomingMovie: "Films à venir - Cinépédia",
+  popularMovie: "Films populaires - Cinépédia",
+  topRatedSerie: "Séries les mieux notées - Cinépédia",
+  upcomingSerie: "Séries en diffusion - Cinépédia",
+  popularSerie: "Séries populaires - Cinépédia"
+}
 const options = {
     method: 'GET',
     headers: {
@@ -42,4 +51,4 @@ const formattedDate2 = `${day2}/${month2 < 10 ? '0' : ''}${month2}`;
 return [formattedDate1, formattedDate2];
 }
 
-export { config, options, addLanguageToUrl, formattingDate };
+export { config, options, addLanguageToUrl, formattingDate, titlePages };
