@@ -8,8 +8,6 @@ const config = {
     topRatedSerieUrl: "https://api.themoviedb.org/3/tv/top_rated",
     upcomingSerieUrl: "https://api.themoviedb.org/3/tv/on_the_air",
     popularSerieUrl: "https://api.themoviedb.org/3/tv/popular"
-
-
 }
 const titlePages = {
   cinemaMovie: "Films au cinéma - Cinépédia",
@@ -20,6 +18,15 @@ const titlePages = {
   upcomingSerie: "Séries en diffusion - Cinépédia",
   popularSerie: "Séries populaires - Cinépédia"
 }
+const pages = [
+  '/pages/topRatedMovies.html',
+  '../pages/popularMovies.html',
+  '../pages/cinemaMovies.html',
+  '../pages/upcomingMovies.html',
+  '../pages/topRatedSeries.html',
+  '../pages/popularSeries.html',
+  '../pages/upcomingSeries.html'
+]
 const options = {
     method: 'GET',
     headers: {
@@ -51,4 +58,4 @@ const formattedDate2 = `${day2}/${month2 < 10 ? '0' : ''}${month2}`;
 return [formattedDate1, formattedDate2];
 }
 
-export { config, options, addLanguageToUrl, formattingDate, titlePages };
+export { config, options, addLanguageToUrl, formattingDate, titlePages, pages };

@@ -125,6 +125,55 @@ main {
                     transition: ease-in-out 0.5s;
                     cursor: pointer;
                 }
+                #top-rated-movies, #popular-movies, #upcoming-movies, #recent-movies, #top-rated-series, #upcoming-series, #popular-series{
+                    width: 100%;
+                    display: flex;
+                    padding: 24px;
+                    gap: 32px;
+                    overflow: hidden;
+                    scroll-behavior: smooth;
+        
+                    .movie-card-container {
+                        width: 200px;
+                        display: flex;
+                        flex-direction: column;
+        
+                        .movie-card {
+                            width: 200px;
+                            height: 300px;
+                            font-size: 0;
+                            border-radius: 15px;
+                            box-shadow: rgba(158,0,178,0.281) 0px 3px 8px;
+                            flex-shrink: 0;
+                            overflow: hidden;
+                        
+                            #picture{
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 15px;
+                                object-fit: cover;
+                                transition: transform .4s;
+                            }
+        
+                            #picture:hover {
+                                transform: scale(1.2);
+                                transform-origin: 50% 50%;
+                                cursor: pointer;
+                                
+                            }
+                        }
+                        .movie-card:hover {
+                            box-shadow: rgba(157, 0, 178, 0.548) 0px 5px 10px;
+                        }
+                        p {
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            margin-top: 10px;
+                            font-weight: 400;
+                        }
+                    }
+                }
             }
             .view-more{
                 font-family: 'Poppins', sans-serif;
@@ -147,55 +196,7 @@ main {
             }
         }
 
-        #top-rated-movies, #popular-movies, #upcoming-movies, #recent-movies, #top-rated-series, #upcoming-series, #popular-series{
-            width: 100%;
-            display: flex;
-            padding: 24px;
-            gap: 32px;
-            overflow: hidden;
-            scroll-behavior: smooth;
-
-            .movie-card-container {
-                width: 200px;
-                display: flex;
-                flex-direction: column;
-
-                .movie-card {
-                    width: 200px;
-                    height: 300px;
-                    font-size: 0;
-                    border-radius: 15px;
-                    box-shadow: rgba(158,0,178,0.281) 0px 3px 8px;
-                    flex-shrink: 0;
-                    overflow: hidden;
-                
-                    #picture{
-                        width: 100%;
-                        height: 100%;
-                        border-radius: 15px;
-                        object-fit: cover;
-                        transition: transform .4s;
-                    }
-
-                    #picture:hover {
-                        transform: scale(1.2);
-                        transform-origin: 50% 50%;
-                        cursor: pointer;
-                        
-                    }
-                }
-                .movie-card:hover {
-                    box-shadow: rgba(157, 0, 178, 0.548) 0px 5px 10px;
-                }
-                p {
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    margin-top: 10px;
-                    font-weight: 400;
-                }
-            }
-        }
+        
     }
 }
 /* HTML: <div class="loader"></div> */
