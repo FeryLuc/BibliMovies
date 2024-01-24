@@ -1,4 +1,9 @@
 import { config, options, addLanguageToUrl, formattingDate, titlePages } from '../config.js';
+const urls = config;
+const optns = options;
+const urlWithLang = addLanguageToUrl;
+const dateFormatting =  formattingDate;
+const pagesTitle = titlePages;
 const container = document.querySelector("#containerFlex");
 const moreMovieBtn = document.getElementById('moreResult');
 const titlePage = document.title;
@@ -6,20 +11,20 @@ let url;
 let page = 1;
 
 switch (titlePage) {
-  case titlePages.topRatedMovie:
-    url = config.topRatedMovieUrl;
+  case pagesTitle.topRatedMovie:
+    url = urls.topRatedMovieUrl;
     break;
 
-  case titlePages.popularMovie:
-    url = config.popularMovieUrl;
+  case pagesTitle.popularMovie:
+    url = urls.popularMovieUrl;
     break;
 
-    case titlePages.cinemaMovie:
-    url = config.recentMovieUrl;
+    case pagesTitle.cinemaMovie:
+    url = urls.recentMovieUrl;
     break;
 
-  case titlePages.upcomingMovie:
-    url = config.upcomingMovieUrl;
+  case pagesTitle.upcomingMovie:
+    url = urls.upcomingMovieUrl;
     fetchUpcomingDates().then(
       ([dateMin, dateMax]) => {
         doWithFetchDates(dateMin, dateMax);
@@ -27,16 +32,16 @@ switch (titlePage) {
     )
     break;
 
-    case titlePages.topRatedSerie:
-    url = config.topRatedSerieUrl;
+    case pagesTitle.topRatedSerie:
+    url = urls.topRatedSerieUrl;
     break;
 
-  case titlePages.popularSerie:
-    url = config.popularSerieUrl;
+  case pagesTitle.popularSerie:
+    url = urls.popularSerieUrl;
     break;
 
-    case titlePages.upcomingSerie:
-    url = config.upcomingSerieUrl;
+    case pagesTitle.upcomingSerie:
+    url = urls.upcomingSerieUrl;
     break;
 
   default:
@@ -47,7 +52,7 @@ function createCard(movie, idx){
   const movieCard = document.createElement('div');
   const movieRateRounded = Math.round((movie[idx].vote_average) * 10) / 10;
   let movieTitle = movie[idx].title;
-  if (titlePage === titlePages.topRatedSerie || titlePage === titlePages.popularSerie || titlePage === titlePages.upcomingSerie) {
+  if (titlePage === pagesTitle.topRatedSerie || titlePage === pagesTitle.popularSerie || titlePage === pagesTitle.upcomingSerie) {
    movieTitle = movie[idx].name;
   }
   if (!movie[idx].poster_path) {
@@ -64,7 +69,7 @@ function createCard(movie, idx){
     movieCard.innerHTML = `
     <div class="movie-card-container">
       <div id="movie-card">
-        <img id="movie-img" src="${config.imgBaseUrl+movie[idx].poster_path}" alt="">
+        <img id="movie-img" src="${urls.imgBaseUrl+movie[idx].poster_path}" alt="">
         <div id="movie-rate">${movieRateRounded}</div>
       </div>
       <p>${movieTitle}</p>
@@ -81,7 +86,7 @@ function createCard(movie, idx){
 
 async function fetchMovies(page = 1){
   try {
-    let response = await fetch(addLanguageToUrl(url)+`&page=${page}`, options);
+    let response = await fetch(urlWithLang(url)+`&page=${page}`, optns);
     if (!response.ok) {
       throw new Error("Network response not ok !");
     }
@@ -103,7 +108,7 @@ function doWithFetchMovies(result) {
 
 async function fetchUpcomingDates(page = 1){
   try {
-    let response = await fetch(addLanguageToUrl(url)+`&page=${page}`, options);
+    let response = await fetch(urlWithLang(url)+`&page=${page}`, optns);
     if (!response.ok) {
       throw new Error("Network response not ok !");
     }
@@ -112,7 +117,7 @@ async function fetchUpcomingDates(page = 1){
     let maxDate = data.dates.maximum;
     let minDate = data.dates.minimum;
 
-    let [dateMin, dateMax] = formattingDate(minDate, maxDate);
+    let [dateMin, dateMax] = dateFormatting(minDate, maxDate);
 
     return [dateMin, dateMax];
     } catch (error) {
