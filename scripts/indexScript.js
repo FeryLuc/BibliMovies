@@ -1,5 +1,8 @@
 import { config, options, addLanguageToUrl, formattingDate, pages } from '../config.js';
-
+const urls = config;
+const optns = options;
+const urlWithLang = addLanguageToUrl;
+const pagePath = pages;
 const containers = document.getElementsByClassName('container-content');
 const loaders = document.getElementsByClassName('loader');
 let url;
@@ -25,7 +28,7 @@ function createCard(movie, idx, currentContainer) {
     card.innerHTML = `
     <div class="movie-card-container">
       <div class="movie-card">
-        <img id="picture" src="${config.imgBaseUrl+movie[idx].poster_path}" alt="">
+        <img id="picture" src="${urls.imgBaseUrl+movie[idx].poster_path}" alt="">
       </div>
     <p>${movieTitle}</p>
     </div>
@@ -43,7 +46,7 @@ async function fetchMoviesAndProcess(url, container, loader) {
         container.style.alignItems = 'center';
         loader.style.display = 'block';
 
-        let response = await fetch(addLanguageToUrl(url), options);
+        let response = await fetch(urlWithLang(url), optns);
         if (!response.ok) {
             throw new Error("Network response not ok !");
         }
@@ -70,44 +73,44 @@ for (const el of containers) {
 
     switch (el.id) {
         case containers[0].id:
-            url = config.topRatedMovieUrl;
+            url = urls.topRatedMovieUrl;
             container = document.getElementById(el.id);
             loader = loaders[0];
             console.log(container, loader);
             fetchMoviesAndProcess(url, container, loader);
             break;
         case containers[1].id:
-            url = config.popularMovieUrl;
+            url = urls.popularMovieUrl;
             container = document.getElementById(el.id);
             loader = loaders[1];
             fetchMoviesAndProcess(url, container, loader);
             break;
         case containers[2].id:
-            url = config.recentMovieUrl;
+            url = urls.recentMovieUrl;
             container = document.getElementById(el.id);
             loader = loaders[2];
             fetchMoviesAndProcess(url, container, loader);
         break;
         case containers[3].id:
-            url = config.upcomingMovieUrl;
+            url = urls.upcomingMovieUrl;
             container = document.getElementById(el.id);
             loader = loaders[3];
             fetchMoviesAndProcess(url, container, loader);
             break;
         case containers[4].id:
-            url = config.topRatedSerieUrl;
+            url = urls.topRatedSerieUrl;
             container = document.getElementById(el.id);
             loader = loaders[4];
             fetchMoviesAndProcess(url, container, loader);
             break;
         case containers[5].id:
-            url = config.popularSerieUrl;
+            url = urls.popularSerieUrl;
             container = document.getElementById(el.id);
             loader = loaders[5];
             fetchMoviesAndProcess(url, container, loader);
             break;
         case containers[6].id:
-            url = config.upcomingSerieUrl;
+            url = urls.upcomingSerieUrl;
             container = document.getElementById(el.id);
             loader = loaders[6];
             fetchMoviesAndProcess(url, container, loader);
@@ -144,6 +147,6 @@ for (let index = 0; index < prevButtons.length; index++) {
 }
 for (let index = 0; index < viewMoreBtn.length; index++) {
   viewMoreBtn[index].addEventListener('click', () => {
-    toPage(pages[index]);
+    toPage(pagePath[index]);
   });
 }

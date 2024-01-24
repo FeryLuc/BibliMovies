@@ -3,3 +3,4 @@ node_modules
 .DS_Store
 Chatgpt.js
 indexScriptBrouillon.js
+config.js
