@@ -35,8 +35,18 @@ function createCard(movie, idx, currentContainer) {
     `;
   }
     card.addEventListener('click', function () {
+      if ('name' in movie[idx]) {
+        const serieId = movie[idx].id;
+        localStorage.setItem('serieId', JSON.stringify(serieId));
+        console.log('serie');
         window.location.href = '../pages/movieDetails.html';
-    } );
+      } else {
+        const movieId = movie[idx].id;
+        localStorage.setItem('movieId', JSON.stringify(movieId));
+        window.location.href = '../pages/movieDetails.html';
+        console.log('film');
+      }
+    });
     return card;
 }
 

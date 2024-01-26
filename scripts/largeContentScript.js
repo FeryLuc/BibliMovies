@@ -7,6 +7,7 @@ const pagesTitle = titlePages;
 const container = document.querySelector("#containerFlex");
 const moreMovieBtn = document.getElementById('moreResult');
 const titlePage = document.title;
+const loader = document.querySelector('.loader');
 let url;
 let page = 1;
 
@@ -77,15 +78,26 @@ function createCard(movie, idx){
     `;
   }
     movieCard.addEventListener('click', function () {
+      if ('name' in movie[idx]) {
+        const serieId = movie[idx].id;
+        localStorage.setItem('serieId', JSON.stringify(serieId));
+        console.log('serie');
         window.location.href = '../pages/movieDetails.html';
+      } else {
+        const movieId = movie[idx].id;
+        localStorage.setItem('movieId', JSON.stringify(movieId));
+        window.location.href = '../pages/movieDetails.html';
+        console.log('film');
+      }
     } );
     container.appendChild(movieCard);
 }
 
 
 
-async function fetchMovies(page = 1){
+async function fetchMovies(page, loader){
   try {
+    loader.style.display = 'block';
     let response = await fetch(urlWithLang(url)+`&page=${page}`, optns);
     if (!response.ok) {
       throw new Error("Network response not ok !");
@@ -98,9 +110,10 @@ async function fetchMovies(page = 1){
       return Promise.reject(error);
     }
 }
-function doWithFetchMovies(result) {
+function doWithFetchMovies(result, loader) {
     for (let index = 0; index < result.length; index++) {
       createCard(result, index);
+      loader.style.display = 'none';
   }
 }
 
@@ -130,9 +143,9 @@ function doWithFetchDates(dateMin, dateMax) {
 }
 
 
-fetchMovies().then(
+fetchMovies(page, loader).then(
   result => {
-    doWithFetchMovies(result);
+    doWithFetchMovies(result, loader);
    }
   ).catch(error => {
     console.error(error);
@@ -142,11 +155,10 @@ fetchMovies().then(
   
 moreMovieBtn.addEventListener('click', function() {
   page++;
-  fetchMovies(page).then(
+  fetchMovies(page, loader).then(
     result => {
-      for (let index = 0; index < result.length; index++) {
-        createCard(result, index);
-    }})
+      doWithFetchMovies(result, loader);
+    })
     .catch(error => {
       console.error(error);
     })
