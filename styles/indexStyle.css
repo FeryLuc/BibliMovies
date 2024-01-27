@@ -194,12 +194,10 @@ main {
                 width: 25%;
                 cursor: pointer;
             }
-        }
-
-        
+        } 
     }
 }
-/* HTML: <div class="loader"></div> */
+
 .loader {
     width: 50px;
     --b: 8px; 

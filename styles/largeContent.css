@@ -57,6 +57,8 @@ header{
         display: flex;
         flex-direction: column;
         color: white;
+        border-radius: 15px;
+        overflow: hidden;
 
         #movie-card{
             position: relative;
@@ -66,6 +68,8 @@ header{
             color: #9e00b2;
             box-shadow: rgba(158,0,178,0.281) 0px 3px 8px;
             cursor: pointer;
+            transition: ease-in-out 0.5s;
+            
             
 
             #movie-img{
@@ -77,36 +81,40 @@ header{
                 height: 100%;
                 border-radius: 15px;
                 object-fit: cover;
-                transition: transform .4s;
-                overflow: hidden;
+                transition: ease-in-out 0.5s;
+                
             }
-
             #movie-rate{
                 position: absolute;
-                bottom: -25px;
-                right: -25px;
+                bottom: 0;
+                right: 0;
                 z-index: 1;
                 width: 50px;
                 height: 50px;
+                background-color: rgba(0, 0, 0, 0.623);
                 font-weight: 900;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 border: 1px solid #9e00b2;
                 border-radius: 50%;
-            }
-            #movie-img:hover {
-                transform: scale(1.2);
-                transform-origin: 50% 50%;
-                cursor: pointer;
+                transition: ease-in-out 0.5s;
             }
         }
         
         #movie-card:hover{
             color: rgba(255, 94, 0, 0.815);
             box-shadow: rgba(157, 0, 178, 0.459) 0px 5px 10px;
+            transform: scale(1.2);
+                transform-origin: 50% 50%;
+                cursor: pointer;
+                #movie-rate {
+                    bottom: 2px;
+                    right: 17px;
+                }
         }
         p {
+            margin-left: 5px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -137,7 +145,7 @@ header{
     box-shadow: rgba(157, 0, 178, 0.479) 0px 3px 8px;
     cursor: pointer;
 }
-/* HTML: <div class="loader"></div> */
+
 .loader {
     width: 50px;
     --b: 8px; 
